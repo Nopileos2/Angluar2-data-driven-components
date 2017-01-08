@@ -1,0 +1,5 @@
+<div class="sidebar">
+<ul *ngIf="done">
+  <sidebar-element *ngFor="let element of data.elements" [element]="element" [metadata]="data.metadata" margin=0 ></sidebar-element>
+</ul>
+</div>

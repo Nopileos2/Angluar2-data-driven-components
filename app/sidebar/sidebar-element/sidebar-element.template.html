@@ -1,0 +1,5 @@
+<li  *ngIf="doneLoading&&!isLeaf" [style.margin-left]="margin + 'px'" sidebarcolor [sidebarcolor2]="element.color" [sidebarbackground]="metadata.defaultElement.backgroundColor" defaultColor="yellow" sidebarborder [sidebarborderstyles]="metadata.defaultBorder" (click)="showChild()">{{element.name}}</li>
+<li  *ngIf="doneLoading&&isLeaf" [style.margin-left]="margin + 'px'" sidebarcolor [sidebarcolor2]="element.color" [sidebarbackground]="metadata.defaultElement.backgroundColor" sidebarborder [sidebarborderstyles]="metadata.defaultBorder">{{element.name}}</li>
+<div *ngIf="haveChilds&&doneLoading&&displayChild" [@flyInOut]="displayChild">
+  <sidebar-element *ngFor="let childs of element.childs" [element]="childs" [metadata]="metadata" [margin]=newMargin  ></sidebar-element>
+</div>
