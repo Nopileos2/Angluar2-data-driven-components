@@ -4,16 +4,15 @@ import { HttpModule }    from '@angular/http';
 import {Sidebar} from './sidebar/sidebar.component'
 import {SidebarElement} from './sidebar/sidebar-element/sidebar-element.component'
 import { AppComponent }  from './app.component';
-import {SidebarColor} from './sidebar/Style-Directives/sidebar-color.directive'
-import {SidebarBorder} from './sidebar/Style-Directives/sidebar-border.directive'
 import { FormsModule } from '@angular/forms';
-
+import {SidebarStyle} from './sidebar/Style-Directives/sidebar-style.directive'
+import {Editor} from './editor/editor.component'
 @NgModule({
   imports:      [ BrowserModule,
                   HttpModule,
                   FormsModule
                 ],
-  declarations: [ AppComponent,Sidebar,SidebarElement,SidebarColor,SidebarBorder ],
+  declarations: [ AppComponent,Sidebar,SidebarElement,SidebarStyle,Editor ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

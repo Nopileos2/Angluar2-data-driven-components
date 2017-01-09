@@ -1,5 +1,5 @@
-<li  *ngIf="doneLoading&&!isLeaf" [style.margin-left]="margin + 'px'" [style.margin-top]="metadata.misc.marginTop" sidebarcolor [sidebarcolor2]="getColor()" [sidebarbackground]="getBackgroundColor()" [sidebarhover]="getBackgroundHoverColor()" sidebarborder [sidebarborderstyles]="getBorderStyle()" (click)="showChild()">{{element.name}}</li>
-<li  *ngIf="doneLoading&&isLeaf" [style.margin-left]="margin + 'px'" [style.margin-top]="metadata.misc.marginTop" sidebarcolor [sidebarcolor2]="getColor()" [sidebarbackground]="getBackgroundColor()" [sidebarhover]="getBackgroundHoverColor()" sidebarborder [sidebarborderstyles]="getBorderStyle()" >{{element.name}}</li>
+<li  *ngIf="doneLoading&&!isLeaf"><div class="SidebarElement" [style.margin-left]="margin + 'px'"  [style.margin-top]="metadata.misc.marginTop" sidebarstyle [sidebarstyleobj]="getSidebarStyles()" (click)="showChild()">{{element.name}}</div></li>
+<li  *ngIf="doneLoading&&isLeaf"><div class="SidebarElement" [style.margin-left]="margin + 'px'" [style.margin-top]="metadata.misc.marginTop"  sidebarstyle [sidebarstyleobj]="getSidebarStyles()">{{element.name}}</div></li>
 <div *ngIf="haveChilds&&doneLoading&&displayChild" [@flyInOut]="displayChild">
   <sidebar-element *ngFor="let childs of element.childs" [element]="childs" [metadata]="metadata" [margin]=getMargin()  ></sidebar-element>
 </div>

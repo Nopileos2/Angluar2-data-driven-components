@@ -1,5 +1,5 @@
 <div class="sidebar">
-  <input *ngIf="done" [(ngModel)]="data.metadata.defaultBorder.borderRadius">
+  <editor *ngIf="done" [data]="data" ></editor>
 <ul *ngIf="done">
   <sidebar-element *ngFor="let element of data.elements" [element]="element" [metadata]="data.metadata" margin=0 ></sidebar-element>
 </ul>

@@ -29,8 +29,6 @@ export class SidebarElement implements OnInit {
   isLeaf:boolean = false;
   doneLoading:boolean = false;
   displayChild:boolean = false;
-  state:string = "in";
-  borderStyle:string = "dotted";
 
   private showChild() {
     this.displayChild = !this.displayChild;
@@ -38,21 +36,16 @@ export class SidebarElement implements OnInit {
   private getMargin(){
     return this.margin + parseInt(this.metadata.misc.marginLeftIncrease);
   }
-  private getBorderStyle(){
-    if(this.element.border != undefined){
-      return this.element.border;
-    } else {
-      return this.metadata.defaultBorder;
-    }
-  }
-  private getColor(){
-    return (this.element.color != undefined) ? this.element.color: this.metadata.defaultElement.color;
-  }
-  private getBackgroundColor(){
-    return (this.element.backgroundColor != undefined) ? this.element.backgroundColor: this.metadata.defaultElement.backgroundColor;
-  }
-  private getBackgroundHoverColor(){
-    return (this.element.backgroundColorHover != undefined) ? this.element.backgroundColorHover: this.metadata.defaultElement.backgroundColorHover;
+
+  private getSidebarStyles(){
+    let color = (this.element.color != undefined) ? this.element.color: this.metadata.defaultElement.color;
+    let backgroundColor = (this.element.backgroundColor != undefined) ? this.element.backgroundColor: this.metadata.defaultElement.backgroundColor;
+    let backgroundColorHover = (this.element.backgroundColorHover != undefined) ? this.element.backgroundColorHover: this.metadata.defaultElement.backgroundColorHover;
+    let textStyles = (this.element.textstyle != undefined) ? this.element.textstyle: this.metadata.defaultElement.textstyle;
+    let borderStyles = (this.element.border != undefined) ? this.element.border: this.metadata.defaultBorder;
+    let dimensions = (this.element.dimensions != undefined) ? this.element.dimensions: this.metadata.defaultElement.dimensions;
+    let sidebarStyleObj = {color,backgroundColor,backgroundColorHover,textStyles,borderStyles,dimensions};
+    return sidebarStyleObj;
   }
 
   ngOnInit() {
@@ -63,6 +56,6 @@ export class SidebarElement implements OnInit {
       this.isLeaf = true;
     }
     this.doneLoading = true;
-    this.borderStyle = this.metadata.defaultBorder.style;
   }
 }
+//<li  *ngIf="doneLoading&&!isLeaf"><div class="SidebarElement" [style.margin-left]="margin + 'px'" [style.margin-top]="metadata.misc.marginTop" sidebarcolor [sidebarcolor2]="getColor()" [sidebarbackground]="getBackgroundColor()" [sidebarhover]="getBackgroundHoverColor()" sidebarborder [sidebarborderstyles]="getBorderStyle()" sidebartext [sidebartextstyle]="getTextStyle()" (click)="showChild()">{{element.name}}</div></li>

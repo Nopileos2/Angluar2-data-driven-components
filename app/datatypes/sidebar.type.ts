@@ -3,6 +3,8 @@ export interface SidebarEntry {
   color?:string;
   backgroundColor?:string;
   backgroundColorHover?:string;
+  textstyle?:any;
+  dimensions?:any;
   border?:any;
   childs?: SidebarEntry[];
 }

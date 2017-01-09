@@ -12,7 +12,24 @@ export const SidebarData :SidebarComplete = {
       color:"black",
       backgroundColor:"lightgray",
       background: 'linear-gradient(to bottom right, red, yellow)',
-      backgroundColorHover:'red'
+      backgroundColorHover:'red',
+      textstyle:{
+        fontSize:'15px',
+        textAlign:'left',
+        textDecoration:'none',
+        fontStyle:'normal',
+        textIndent:'10px',
+        textShadow:'none',
+        fontWeight:'normal'
+      },
+      dimensions:{
+        minWidth:'100px',
+        width:'90%',
+        maxWidth:'1000px',
+        minHeight:'20px',
+        height:'30px',
+        maxHeight:'100px',
+      }
     },
     misc: {
       marginLeftIncrease:10,
@@ -20,8 +37,9 @@ export const SidebarData :SidebarComplete = {
     }
   },
   elements: [{
-    name:"1",
+    name:"1032843 AAksj 234",
     backgroundColorHover:'green',
+    color:'red',
     border:{
       borderLeft:"6px solid green",
       borderRight:"1px solid red",
@@ -29,5 +47,22 @@ export const SidebarData :SidebarComplete = {
       borderBottom:"1px solid red",
       borderRadius:"3px"
     },
-    childs:[{name:"3",color:"blue",childs:[{name:"99",color:"blue"}]},{name:"4",color:"blue"}]},{name:"2",color:"blue"}]
+    dimensions:{
+      minWidth:'100px',
+      width:'50%',
+      maxWidth:'1000px',
+      minHeight:'20px',
+      height:'40px',
+      maxHeight:'100px',
+    },
+    childs:[{
+      name:"3",
+      color:"blue",
+      dimensions:{
+        minWidth:'100px',
+        width:'90%',
+        minHeight:'20px',
+        maxHeight:'100px',
+      },
+      childs:[{name:"99",color:"blue"}]},{name:"4",color:"blue"}]},{name:"2",color:"blue"}]
 }
