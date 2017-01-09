@@ -1,6 +1,9 @@
 export interface SidebarEntry {
   name:string;
-  color:string;
+  color?:string;
+  backgroundColor?:string;
+  backgroundColorHover?:string;
+  border?:any;
   childs?: SidebarEntry[];
 }
 

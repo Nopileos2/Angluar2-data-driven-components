@@ -6,10 +6,12 @@ import {SidebarElement} from './sidebar/sidebar-element/sidebar-element.componen
 import { AppComponent }  from './app.component';
 import {SidebarColor} from './sidebar/Style-Directives/sidebar-color.directive'
 import {SidebarBorder} from './sidebar/Style-Directives/sidebar-border.directive'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports:      [ BrowserModule,
-                  HttpModule
+                  HttpModule,
+                  FormsModule
                 ],
   declarations: [ AppComponent,Sidebar,SidebarElement,SidebarColor,SidebarBorder ],
   bootstrap:    [ AppComponent ]

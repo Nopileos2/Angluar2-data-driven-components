@@ -2,24 +2,28 @@ import { Directive, ElementRef, HostListener,HostBinding, Input, OnInit } from '
 
 
 @Directive({
-  selector: '[sidebarcolor]'
+  selector: '[sidebarcolor]',
+  host: {
+    '(mouseenter)': 'onMouseEnter()',
+    '(mouseleave)': 'onMouseLeave()'
+  }
 })
 export class SidebarColor implements OnInit{
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef) { this.el = el.nativeElement; }
 
-  //@HostBinding('style.color')
-  //@Input('defaultColor') defaultColor:string;
 
   @HostBinding('style.color')
   @Input('sidebarcolor2') highlightColor: string;
 
   @HostBinding('style.background-color')
   @Input('sidebarbackground') backgroundColor:string;
-  /*@HostListener('mouseenter') onMouseEnter(){
-    this.el.nativeElement.style.backgroundColor = "yellow";
-  }*/
+
+  @Input('sidebarhover') hoverColor:string;
+
+  onMouseEnter() { this.el.style.backgroundColor = this.hoverColor;}
+  onMouseLeave() { this.el.style.backgroundColor = this.backgroundColor; }
+
 
   ngOnInit(){
-    console.log("Hallo ",this.backgroundColor);
   }
 }

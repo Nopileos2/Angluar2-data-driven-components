@@ -1,6 +1,8 @@
 import { Component, OnInit,trigger,  state,  style,  transition,  animate } from '@angular/core';
 import {SidebarService} from '../services/sidebar.service'
 import {SidebarComplete,SidebarEntry} from '../datatypes/sidebar.type'
+
+
 @Component({
   selector: 'sidebar',
   moduleId: module.id,

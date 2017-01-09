@@ -35,16 +35,33 @@ export class SidebarElement implements OnInit {
   private showChild() {
     this.displayChild = !this.displayChild;
   }
+  private getMargin(){
+    return this.margin + parseInt(this.metadata.misc.marginLeftIncrease);
+  }
+  private getBorderStyle(){
+    if(this.element.border != undefined){
+      return this.element.border;
+    } else {
+      return this.metadata.defaultBorder;
+    }
+  }
+  private getColor(){
+    return (this.element.color != undefined) ? this.element.color: this.metadata.defaultElement.color;
+  }
+  private getBackgroundColor(){
+    return (this.element.backgroundColor != undefined) ? this.element.backgroundColor: this.metadata.defaultElement.backgroundColor;
+  }
+  private getBackgroundHoverColor(){
+    return (this.element.backgroundColorHover != undefined) ? this.element.backgroundColorHover: this.metadata.defaultElement.backgroundColorHover;
+  }
 
   ngOnInit() {
     this.margin = parseInt(this.margin);
     if (this.element.childs != undefined) {
       this.haveChilds = true;
-      this.newMargin = this.margin + 10;
     } else {
       this.isLeaf = true;
     }
-    console.log(this.isLeaf);
     this.doneLoading = true;
     this.borderStyle = this.metadata.defaultBorder.style;
   }
