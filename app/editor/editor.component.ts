@@ -1,4 +1,4 @@
-import { Component, OnInit,trigger,  state,  style,  transition,  animate,Input,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit,trigger,HostListener,  state,  style,  transition,  animate,Input,Output,EventEmitter } from '@angular/core';
 import {SidebarService} from '../services/sidebar.service'
 import {SidebarComplete,SidebarEntry} from '../datatypes/sidebar.type'
 
@@ -7,20 +7,75 @@ import {SidebarComplete,SidebarEntry} from '../datatypes/sidebar.type'
   selector: 'editor',
   moduleId: module.id,
   templateUrl: 'editor.template.html',
-  //styleUrls:['sidebar.stylesheet.css'],
+  styleUrls:['editor.stylesheet.css'],
 
 })
 
-export class Editor implements OnInit{
-  constructor() { }
-  @Input('data') data:any;
-
-  private doStuff(){
-    this.data.metadata.defaultElement.textstyle.fontSize = '30px'
+export class Editor implements OnInit {
+  constructor() {
   }
-  ngOnInit(){
-    console.log('Hallo', this.data);
 
+  @Input('data') data: any;
+  left: string = "100px";
+  top: string = "100px";
+  offsetX: number = 0;
+  offsetY: number = 0;
+  object: any[];
+  iterArray: Object[] = [];
+  done: boolean = false;
+
+  @HostListener('document:dragover', ['$event'])
+  handleDragOverEvent(event: any) {
+    this.left = event.x - this.offsetX + 'px';
+    this.top = event.y - this.offsetY + 'px';
+    event.preventDefault();
+  }
+
+  private onDragStart(event: any) {
+    this.offsetX = event.x - parseInt(this.left);
+    this.offsetY = event.y - parseInt(this.top);
+  }
+
+  private doStuff() {
+    this.data.elements[0].childs.push({name:"pushTest"});
+  }
+
+  private getKeysToObject() {
+    let keys: string[] = [];
+    for (let k in this.data) keys.push(k);
+    return keys;
+  }
+
+  private getTypeforKeys(keys: string[]) {
+    let types: string[] = [];
+    for (let i = 0; i < keys.length; i++) {
+      types.push(typeof(this.data[keys[i]]))
+    }
+    return types;
+  }
+
+  private combineKeysAndTypes(keys: string[], types: string[]) {
+    let combinedArray: Object[] = [];
+    for (let j = 0; j < keys.length; j++) {
+      combinedArray.push({key: keys[j], type: types[j]});
+    }
+    return combinedArray;
+  }
+
+  ngOnInit() {
+    let type = typeof(this.data);
+    if (type == "object" || type == "array") {
+      let keys = this.getKeysToObject();
+      let types = this.getTypeforKeys(keys);
+      let combindedArray = this.combineKeysAndTypes(keys, types);
+      this.iterArray = combindedArray;
+      console.log(this.iterArray);
+      this.done = true;
+    }
   }
 }
 
+/*
+ <input [(ngModel)]="data.metadata.defaultElement.dimensions.height">
+ <button (click)="doStuff()">hallo</button>
+ */

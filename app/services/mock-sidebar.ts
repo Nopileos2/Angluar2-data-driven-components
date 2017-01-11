@@ -64,5 +64,15 @@ export const SidebarData :SidebarComplete = {
         minHeight:'20px',
         maxHeight:'100px',
       },
-      childs:[{name:"99",color:"blue"}]},{name:"4",color:"blue"}]},{name:"2",color:"blue"}]
+      childs:[{name:"99",color:"blue"}]},
+      {
+        name:"4",
+        color:"blue",
+        childs:[{name:'Test1'}]
+      }]},
+      {
+        name:"2",
+        color:"blue",
+        childs:[{name:"100"}]
+      }]
 }

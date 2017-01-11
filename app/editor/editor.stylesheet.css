@@ -1,0 +1,13 @@
+.Editor {
+  height: 500px;
+  width: 300px;
+  border: 1px solid black;
+  z-index: 99;
+  position: absolute;
+  cursor: move;
+}
+ul {
+  list-style: none;
+  float: left;
+  padding-left: 10px;
+}

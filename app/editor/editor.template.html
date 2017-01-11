@@ -1,2 +1,6 @@
-<input [(ngModel)]="data.metadata.defaultElement.dimensions.height">
-<button (click)="doStuff()">hallo</button>
+<div draggable="true" class="Editor" [style.left]="left" [style.top]="top" (dragstart)="onDragStart($event)" >
+  <button (click)="doStuff()">hallo</button>
+  <ul>
+  <editor-element *ngFor="let entry of iterArray" [data]="data[entry.key]" [name]="entry.key" [margin]=0></editor-element>
+  </ul>
+</div>

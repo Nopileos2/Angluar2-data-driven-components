@@ -1,0 +1,22 @@
+.node {
+  display: inline-block;
+  width: 90%;
+}
+.leaf{
+  width: 90%;
+  display: block;
+  background-color: lightblue;
+}
+
+.node-label {
+  width: auto;
+}
+
+.name-wrapper{
+  width: 100%;
+  display: inline-block;
+}
+.editor-triangle {
+  display: inline-block;
+}
+

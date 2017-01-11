@@ -1,0 +1,15 @@
+<li>
+<div class='name-wrapper' [style.margin-left]="margin + 'px'" (click)="onClick()">
+  <div class='editor-triangle' [style.transform]="rotation">►</div>
+  <label  class="node-label" >{{name}}</label>
+</div>
+<div [style.margin-left]="margin + 'px'" class="node" *ngIf="done&&!isPrimitive&&showChildren">
+  <editor-element *ngFor="let entry of iterArray" [data]="data[entry.key]" [name]="entry.key" [margin]="newMargin"></editor-element>
+</div>
+
+<div [style.margin-left]="newMargin + 'px'" class="leaf" *ngIf="done&&isPrimitive&&showChildren">
+  <label>Primtive</label>
+</div>
+</li>
+
+
