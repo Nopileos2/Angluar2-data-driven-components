@@ -16,6 +16,7 @@ export class Editor implements OnInit {
   }
 
   @Input('data') data: any;
+  @Input('mode') mode:any;
   left: string = "100px";
   top: string = "100px";
   offsetX: number = 0;
@@ -23,12 +24,15 @@ export class Editor implements OnInit {
   object: any[];
   iterArray: Object[] = [];
   done: boolean = false;
+  dragable:boolean = true;
 
   @HostListener('document:dragover', ['$event'])
   handleDragOverEvent(event: any) {
+    if (this.dragable) {
     this.left = event.x - this.offsetX + 'px';
     this.top = event.y - this.offsetY + 'px';
     event.preventDefault();
+  }
   }
 
   private onDragStart(event: any) {
@@ -64,13 +68,16 @@ export class Editor implements OnInit {
 
   ngOnInit() {
     let type = typeof(this.data);
-    if (type == "object" || type == "array") {
+    console.log(this.data instanceof Array);
+    if (type == "object" ) {
       let keys = this.getKeysToObject();
       let types = this.getTypeforKeys(keys);
       let combindedArray = this.combineKeysAndTypes(keys, types);
       this.iterArray = combindedArray;
       console.log(this.iterArray);
       this.done = true;
+    } else if ( type == "array") {
+      console.log('Array Found');
     }
   }
 }

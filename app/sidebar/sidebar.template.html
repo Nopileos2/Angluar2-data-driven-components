@@ -1,5 +1,5 @@
 <div class="sidebar">
-  <editor *ngIf="done" [data]="data" ></editor>
+  <editor *ngIf="done" [data]="data" [mode]="'sidebar'" ></editor>
 <ul *ngIf="done">
   <sidebar-element *ngFor="let element of data.elements" [element]="element" [metadata]="data.metadata" margin=0 ></sidebar-element>
 </ul>

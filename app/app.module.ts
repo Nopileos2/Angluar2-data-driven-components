@@ -8,12 +8,13 @@ import { FormsModule } from '@angular/forms';
 import {SidebarStyle} from './sidebar/Style-Directives/sidebar-style.directive'
 import {Editor} from './editor/editor.component'
 import {EditorElement} from './editor/editor-element/editor-element.component'
+import {EditorSidebarMode} from './editor/editor-sidebar-mode/editor-sidebar-mode.component'
 @NgModule({
   imports:      [ BrowserModule,
                   HttpModule,
                   FormsModule
                 ],
-  declarations: [ AppComponent,Sidebar,SidebarElement,SidebarStyle,Editor,EditorElement ],
+  declarations: [ AppComponent,Sidebar,SidebarElement,SidebarStyle,Editor,EditorElement,EditorSidebarMode ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

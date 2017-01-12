@@ -1,14 +1,24 @@
 <li>
-<div class='name-wrapper' [style.margin-left]="margin + 'px'" (click)="onClick()">
+<div *ngIf="!isArray" class='name-wrapper' [style.margin-left]="margin + 'px'" (click)="onClick()">
   <div class='editor-triangle' [style.transform]="rotation">►</div>
   <label  class="node-label" >{{name}}</label>
 </div>
-<div [style.margin-left]="margin + 'px'" class="node" *ngIf="done&&!isPrimitive&&showChildren">
-  <editor-element *ngFor="let entry of iterArray" [data]="data[entry.key]" [name]="entry.key" [margin]="newMargin"></editor-element>
+<div [style.margin-left]="margin + 'px'" class="node" *ngIf="done&&!isPrimitive&&showChildren&&!isArray">
+  <editor-element *ngFor="let entry of iterArray" [data]="data" [name]="entry.key" [margin]="newMargin" [arrayBool]="false" ></editor-element>
 </div>
 
-<div [style.margin-left]="newMargin + 'px'" class="leaf" *ngIf="done&&isPrimitive&&showChildren">
-  <label>Primtive</label>
+<div *ngIf="isArray" class='name-wrapper array' [style.margin-left]="margin + 'px'" (click)="onClick()">
+    <div class='editor-triangle' [style.transform]="rotation">►</div>
+    <label (click)="log(data2)" class="node-label" >{{name}}</label>
+</div>
+  <div [style.margin-left]="margin + 'px'" class="node array" *ngIf="done&&!isPrimitive&&showChildren&&isArray">
+    <editor-element *ngFor="let entry of data" [data]="entry" [name]="entry.name" [margin]="newMargin" [arrayBool]="true" ></editor-element>
+  </div>
+
+<div [style.margin-left]="newMargin + 'px'" class="leaf" *ngIf="done&&isPrimitive&&showChildren&&!isArray">
+  <label (click)="log(data2)">Primtive</label>
+  <input *ngIf="!arrayBool" [(ngModel)]="data2[name]">
+  <input *ngIf="arrayBool" [(ngModel)]="data2['name']">
 </div>
 </li>
 
