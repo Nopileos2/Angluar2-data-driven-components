@@ -73,6 +73,6 @@ export const SidebarData :SidebarComplete = {
       {
         name:"2",
         color:"blue",
-        childs:[{name:"100"}]
+        childs:[{name:"100",childs:[]}]
       }]
 }

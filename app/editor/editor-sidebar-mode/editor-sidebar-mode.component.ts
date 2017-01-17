@@ -39,7 +39,6 @@ export class EditorSidebarMode implements OnInit {
 
   private onKeyUp(event: any) {
     let text = event.target.value.replace(/>/g,'');
-    console.log(text);
     let splittedTextEnter = text.split('\n');
     splittedTextEnter = this.removeEmptylines(splittedTextEnter);
     let indentArray: number[] = [];
@@ -49,33 +48,70 @@ export class EditorSidebarMode implements OnInit {
       let indent = this.getIndent(splittedElement);
       indentArray.push(indent);
     }
-    console.log(splittedTextEnter);
     if (this.checkStructure(indentArray)) {
-      this.changeData(splittedTextEnter, indentArray);
+      this.prepareChangeData(splittedTextEnter, indentArray);
     }
     //console.log(indentArray);
     //console.log(this.checkStructure(indentArray));
   }
 
   private removeEmptylines(splittedTextEnter:string[]):string[] {
-    let index = splittedTextEnter.indexOf("");
+    //remove TABS
+    let cleanSplittedText:string[] = [];
+    for(let i=0;i<splittedTextEnter.length;i++) cleanSplittedText.push(splittedTextEnter[i].replace(/\t/g,''))
+
+    let index = cleanSplittedText.indexOf("");
     while(index != -1){
       splittedTextEnter.splice(index,1);
-      index = splittedTextEnter.indexOf("");
+      cleanSplittedText.splice(index,1);
+      index = cleanSplittedText.indexOf("");
     }
     return splittedTextEnter;
   }
 
-  private changeData(splittedTextEnter: string[], indentArray: number[]) {
-     for(let l=0;l<splittedTextEnter.length;l++){
-       let tabSplitted = splittedTextEnter[l].split('\t');
-       let name = tabSplitted[indentArray[l]];
-       this.changeElement(l,indentArray[l],name);
-       console.log(name)
-     }
+  private prepareChangeData(splittedTextEnter: string[], indentArray: number[]) {
+    //remove \t from every Element
+    for(let i=0;i<splittedTextEnter.length;i++) splittedTextEnter[i] = splittedTextEnter[i].split('\t')[indentArray[i]];
+    let elementArray = this.buildArray(splittedTextEnter,indentArray,0,0,splittedTextEnter.length-1);
+    this.changeData(this.data,elementArray);
   }
-  private changeElement(position:number,indent:number,Name:string){
-      let evalString = 'this.data.elements';
+
+  private changeData(realObject:any[],newObject:any[]) {
+    let length1 = realObject.length;
+    let length2 = newObject.length;
+    let diff = length2-length1;
+    let min = Math.min(length1,length2);
+    for(let i=0;i<min;i++){
+      realObject[i].name = newObject[i].name;
+      if(newObject[i].childs != undefined) {
+        if(realObject[i].childs == undefined) realObject[i].childs = [];
+        this.changeData(realObject[i].childs,newObject[i].childs);
+
+      }
+    }
+    if (diff > 0){
+      for(let j=length1;j<length2;j++) realObject.push(newObject[j])
+    } else if(diff < 0){
+      for(let j=length2;j<length1;j++) realObject.pop()
+    }
+
+  }
+
+  private buildArray(splittedTextEnter: string[], indentArray: number[],indent:number,lowerIndex:number,upperIndex:number){
+    //find all elements for input indent in the indentArray
+    let returnArray:any[] = [];
+    let findArray:number[] = [];
+    for(let j=lowerIndex;j<= upperIndex;j++){
+      if(indentArray[j] == indent) findArray.push(j)
+    }
+    for(let k=0;k<findArray.length;k++){
+      let newLower = findArray[k];
+      let newUpper = findArray[k+1];
+      if(findArray[k+1] == undefined) newUpper = upperIndex;
+      returnArray.push({name:splittedTextEnter[newLower],childs:this.buildArray(splittedTextEnter,indentArray,indent+1,newLower,newUpper)});
+    }
+    return returnArray;
+
   }
 
   private checkStructure(numberArray: number[]): boolean {
@@ -119,8 +155,7 @@ export class EditorSidebarMode implements OnInit {
   }
 
   ngOnInit() {
-
-    console.log(this.data);
+    console.log('data',this.data);
     this.Elements = this.parseObjectToText(this.data, '', 0);
 
   }
