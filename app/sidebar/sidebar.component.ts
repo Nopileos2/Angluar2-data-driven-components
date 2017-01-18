@@ -15,12 +15,19 @@ export class Sidebar implements OnInit{
   constructor(private sidebarService: SidebarService) { }
   name = 'Sidebar2';
   data:SidebarComplete;
+  controlData:any;
   done:boolean = false;
+  doneCount:number = 0;
   ngOnInit(){
     this.sidebarService.getData().then(data => {
       this.data = data;
-      console.log(this.data);
-      this.done = true;
+      this.doneCount++;
+      if(this.doneCount == 2) this.done = true;
+    });
+    this.sidebarService.getControlDataEditor().then(data => {
+      this.controlData = data;
+      this.doneCount++;
+      if(this.doneCount == 2) this.done = true;
     })
 
   }

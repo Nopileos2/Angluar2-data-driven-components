@@ -11,7 +11,6 @@ export const SidebarData :SidebarComplete = {
     defaultElement:{
       color:"black",
       backgroundColor:"lightgray",
-      background: 'linear-gradient(to bottom right, red, yellow)',
       backgroundColorHover:'red',
       textstyle:{
         fontSize:'15px',
@@ -37,7 +36,7 @@ export const SidebarData :SidebarComplete = {
     }
   },
   elements: [{
-    name:"1032843 AAksj 234",
+    name:"Main",
     backgroundColorHover:'green',
     color:'red',
     border:{
@@ -56,23 +55,17 @@ export const SidebarData :SidebarComplete = {
       maxHeight:'100px',
     },
     childs:[{
-      name:"3",
+      name:"Sub",
       color:"blue",
-      dimensions:{
-        minWidth:'100px',
-        width:'90%',
-        minHeight:'20px',
-        maxHeight:'100px',
-      },
-      childs:[{name:"99",color:"blue"}]},
+      childs:[{name:"SubSub",color:"blue"}]},
       {
-        name:"4",
+        name:"Sub",
         color:"blue",
-        childs:[{name:'Test1'}]
+        childs:[{name:'SubSub'}]
       }]},
       {
-        name:"2",
+        name:"Main",
         color:"blue",
-        childs:[{name:"100",childs:[]}]
+        childs:[{name:"Sub"}]
       }]
 }

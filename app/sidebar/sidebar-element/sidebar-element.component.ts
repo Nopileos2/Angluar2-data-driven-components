@@ -20,7 +20,7 @@ import {SidebarEntry} from '../../datatypes/sidebar.type'
 })
 
 export class SidebarElement implements OnInit {
-  @Input() element: SidebarEntry;
+  @Input('element') element: SidebarEntry;
   @Input("margin") margin: any;
   @Input("metadata") metadata:any;
   newMargin: number;

@@ -1,0 +1,5 @@
+<div *ngFor="let type of typeArray; let i = index">
+  <size-input *ngIf="type=='size'" [data]="data" [name]="name" [index]="i" [inputName]="nameArray[i]" ></size-input>
+  <select-input *ngIf="type=='select'" [data]="data" [name]="name" [index]="i" [selectArray]="selectArray[i]" [inputName]="nameArray[i]"></select-input>
+  <color-input *ngIf="type=='color'" [data]="data" [name]="name" [index]="i"></color-input>
+</div>

@@ -155,7 +155,6 @@ export class EditorSidebarMode implements OnInit {
   }
 
   ngOnInit() {
-    console.log('data',this.data);
     this.Elements = this.parseObjectToText(this.data, '', 0);
 
   }

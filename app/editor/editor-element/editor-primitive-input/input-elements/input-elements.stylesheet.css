@@ -1,0 +1,33 @@
+.size-input-number {
+  display: inline;
+  width: 30%;
+}
+
+.size-input-unit {
+  display: inline;
+  width: 25%;
+}
+
+.size-label{
+  width: 40%;
+}
+
+.select-input {
+  width: 50%;
+  display: inline;
+}
+
+.select-label{
+  width: 40%;
+}
+
+.color-input {
+  width: 40%;
+}
+.color-input-label {
+  width: 40%;
+}
+
+label {
+  font-weight: bold;
+}

@@ -2,7 +2,7 @@
   <button (click)="dragable = !dragable">Lock/Unlock</button>
   <div class="editor-element-wrapper">
   <ul >
-  <editor-element *ngFor="let entry of iterArray" [data]="data" [name]="entry.key" [margin]=0 [arrayBool]="false" ></editor-element>
+  <editor-element *ngFor="let entry of iterArray" [data]="data" [name]="entry.key" [controlData]="controlData" [margin]=0  [arrayBool]="false" ></editor-element>
   </ul>
   </div>
   <editor-sidebar-mode [data]="data.elements" *ngIf="mode == 'sidebar'"></editor-sidebar-mode>

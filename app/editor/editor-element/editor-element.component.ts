@@ -24,6 +24,7 @@ import {
 export class EditorElement implements OnInit {
   @Input('data') data2: any;
   @Input('name') name: string;
+  @Input('controlData') controlData:any;
   @Input('margin') margin: number;
   @Input('arrayBool') arrayBool:boolean;
   done: boolean = false;
@@ -91,10 +92,9 @@ export class EditorElement implements OnInit {
     this.newMargin = this.margin + 5;
     let type = typeof(this.data);
     if (this.data instanceof Array) {
-      for(let i of this.data){
-        console.log(i, i.name);
-      }
-      console.log('Array',this.data);
+      //for(let i of this.data){
+      //  console.log(i, i.name);
+      //}
       let length = this.data.length;
       this.isArray = true;
       this.done = true;
@@ -106,7 +106,6 @@ export class EditorElement implements OnInit {
       this.iterArray = combindedArray;
       this.done = true;
     } else {
-      console.log('Primitive');
       let keys = this.getKeysToObject();
       this.primitiveKey = keys[0];
       this.isPrimitive = true;

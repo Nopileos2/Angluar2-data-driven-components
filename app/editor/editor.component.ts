@@ -16,6 +16,7 @@ export class Editor implements OnInit {
   }
 
   @Input('data') data: any;
+  @Input('controlData') controlData:any;
   @Input('mode') mode:any;
   left: string = "100px";
   top: string = "100px";
@@ -68,16 +69,15 @@ export class Editor implements OnInit {
 
   ngOnInit() {
     let type = typeof(this.data);
-    console.log(this.data instanceof Array);
+    //console.log(this.data instanceof Array);
     if (type == "object" ) {
       let keys = this.getKeysToObject();
       let types = this.getTypeforKeys(keys);
       let combindedArray = this.combineKeysAndTypes(keys, types);
       this.iterArray = combindedArray;
-      console.log(this.iterArray);
       this.done = true;
     } else if ( type == "array") {
-      console.log('Array Found');
+      //console.log('Array Found');
     }
   }
 }
